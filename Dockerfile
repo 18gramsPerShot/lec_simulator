@@ -9,10 +9,10 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the actual application code
-COPY app.py .
+COPY web_ui.py .
 
 # Expose the port Streamlit uses by default
 EXPOSE 8501
 
 # Command to run the Streamlit app
-CMD["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+CMD["streamlit", "run", "web_ui.py", "--server.port=8501", "--server.address=0.0.0.0"]

@@ -37,7 +37,7 @@ feed_in_tariff = st.sidebar.slider("Feed-in Tariff (Export)", 0.00, 0.15, 0.06, 
 
 st.sidebar.markdown("---")
 st.sidebar.info("""
-** Note:**
+**Note:**
 * **SME** = Small Business (e.g., Bakery). High daytime load.
 * **SFH** = Single Family Home. High evening load (EV + Cooking).
 """)

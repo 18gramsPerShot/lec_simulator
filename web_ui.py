@@ -9,7 +9,7 @@ import plotly.express as px
 # ----------------------------------------------------------------------
 st.set_page_config(page_title="LEC Simulator", layout="wide")
 
-st.title("⚡ Local Energy Community Simulator")
+st.title("Local Energy Community Simulator")
 st.markdown("""
 **Welcome to the interactive LEC Sandbox.**  
 Explore how different mathematical **Sharing Coefficients** impact the physical energy flows and the financial bills of the community members.
@@ -18,7 +18,7 @@ Explore how different mathematical **Sharing Coefficients** impact the physical 
 # ----------------------------------------------------------------------
 # 2. Sidebar: Controls & Tariffs
 # ----------------------------------------------------------------------
-st.sidebar.header("⚙️ Community Settings")
+st.sidebar.header("Community Settings")
 
 # Coefficient Selector
 coefficient = st.sidebar.selectbox(
@@ -27,7 +27,7 @@ coefficient = st.sidebar.selectbox(
 )
 
 st.sidebar.markdown("---")
-st.sidebar.header("💸 Economic Parameters")
+st.sidebar.header("Economic Parameters")
 st.sidebar.caption("Set the tariffs (in CHF/kWh)")
 
 # Tariffs
@@ -37,7 +37,7 @@ feed_in_tariff = st.sidebar.slider("Feed-in Tariff (Export)", 0.00, 0.15, 0.06, 
 
 st.sidebar.markdown("---")
 st.sidebar.info("""
-**💡 Teaching Note:**
+** Note:**
 * **SME** = Small Business (e.g., Bakery). High daytime load.
 * **SFH** = Single Family Home. High evening load (EV + Cooking).
 """)
@@ -125,7 +125,7 @@ ssr = (df['Total_Allocated'].sum() / df['Total_Load'].sum()) * 100
 # ----------------------------------------------------------------------
 # 6. Dashboard Render: KPIs
 # ----------------------------------------------------------------------
-st.subheader(f"📊 Results for: {coefficient}")
+st.subheader(f"Results for: {coefficient}")
 
 col1, col2, col3, col4 = st.columns(4)
 col1.metric("Community Self-Sufficiency", f"{ssr:.1f} %")
@@ -141,7 +141,7 @@ st.markdown("---")
 col_charts_1, col_charts_2 = st.columns([2, 1])
 
 with col_charts_1:
-    st.markdown("### 📈 Physical Energy Flows (24h)")
+    st.markdown("Physical Energy Flows (24h)")
     
     # Create an interactive Plotly Area Chart
     fig1 = go.Figure()
@@ -167,7 +167,7 @@ with col_charts_1:
     st.plotly_chart(fig1, use_container_width=True)
 
 with col_charts_2:
-    st.markdown("### 💰 Financial Value Created")
+    st.markdown("Financial Value Created")
     st.caption("Avoided grid costs + Export revenues")
     
     # Bar Chart for Financials
@@ -185,7 +185,7 @@ with col_charts_2:
 # ----------------------------------------------------------------------
 # 8. Explanatory Footer
 # ----------------------------------------------------------------------
-with st.expander("📚 Expand to see the mathematical logic for this coefficient"):
+with st.expander("Expand to see the mathematical logic for this coefficient"):
     if "Fixed" in coefficient:
         st.latex(r"E_{SME} = \min(PV_{gen} \times 0.5, Load_{SME})")
         st.write("The Fixed coefficient forces a strict 50/50 split. If a peer doesn't need their 50%, it is exported to the grid, even if the other peer still has a demand deficit. **Notice the high 'Wasted' Grid Export KPI.**")
